@@ -56,10 +56,14 @@ def handle_bullets(yellow_bullets, red_bullets, yellow, red):
         if red.colliderect(bullets):
             pygame.event.post(pygame.event.Event(RED_HIT))
             yellow_bullets.remove(bullets)
+        if bullets.x > WIDTH:
+            yellow_bullets.remove(bullets)
     for bullets in red_bullets:
         bullets.x -= BULLET_VEL
         if yellow.colliderect(bullets):
             pygame.event.post(pygame.event.Event(YELLOW_HIT))
+            red_bullets.remove(bullets)
+        if bullets.x <= 0:
             red_bullets.remove(bullets)
 
 def draw_window(red, yellow, red_bullets, yellow_bullets):
